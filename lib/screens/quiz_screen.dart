@@ -336,7 +336,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                           color: Colors.transparent,
                           width: 4,
                         );
-                        String symbol = '';
+                        IconData? symbolIcon;
 
                         if (showFeedback) {
                           if (option == selectedAnswer) {
@@ -344,11 +344,11 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                             if (wasCorrect) {
                               buttonColor = Colors.green;
                               disabledColor = Colors.green;
-                              symbol = '✓';
+                              symbolIcon = Icons.check;
                             } else {
                               buttonColor = Colors.red;
                               disabledColor = Colors.red;
-                              symbol = '✗';
+                              symbolIcon = Icons.close;
                             }
                           } else if (option == correctAnswer && !wasCorrect) {
                             // Show the correct answer with amber border if user was wrong
@@ -356,7 +356,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                               color: Colors.amber,
                               width: 4,
                             );
-                            symbol = '✓';
+                            symbolIcon = Icons.check;
                           }
                         }
 
@@ -393,17 +393,14 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                                 ),
                               ),
                               // Symbol positioned to the left of center
-                              if (symbol.isNotEmpty)
+                              if (symbolIcon != null)
                                 Center(
                                   child: Transform.translate(
                                     offset: const Offset(-40, 0),
-                                    child: Text(
-                                      symbol,
-                                      style: const TextStyle(
-                                        fontSize: 32,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
+                                    child: Icon(
+                                      symbolIcon,
+                                      size: 32,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
