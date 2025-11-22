@@ -1,19 +1,17 @@
 import 'dart:async';
 import 'dart:math';
+
 import 'package:flutter/material.dart';
-import '../utils/constants.dart';
+
 import '../utils/audio_helper.dart';
+import '../utils/constants.dart';
 import 'result_screen.dart';
 
 class QuizScreen extends StatefulWidget {
   final int table;
   final Difficulty difficulty;
 
-  const QuizScreen({
-    super.key,
-    required this.table,
-    required this.difficulty,
-  });
+  const QuizScreen({super.key, required this.table, required this.difficulty});
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -32,6 +30,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
   bool showFeedback = false;
   bool wasCorrect = false;
   bool gameFinished = false;
+  int correctAnswerCount = 0;
   final Random random = Random();
   final AudioHelper audioHelper = AudioHelper();
 
@@ -53,13 +52,14 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 1200),
       vsync: this,
     );
-    _bounceAnimation = TweenSequence<double>([
-      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.2), weight: 1),
-      TweenSequenceItem(tween: Tween(begin: 1.2, end: 0.95), weight: 1),
-      TweenSequenceItem(tween: Tween(begin: 0.95, end: 1.0), weight: 1),
-    ]).animate(
-      CurvedAnimation(parent: _bounceController, curve: Curves.easeInOut),
-    );
+    _bounceAnimation =
+        TweenSequence<double>([
+          TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.2), weight: 1),
+          TweenSequenceItem(tween: Tween(begin: 1.2, end: 0.95), weight: 1),
+          TweenSequenceItem(tween: Tween(begin: 0.95, end: 1.0), weight: 1),
+        ]).animate(
+          CurvedAnimation(parent: _bounceController, curve: Curves.easeInOut),
+        );
 
     // Shake animation for wrong answer
     _shakeController = AnimationController(
@@ -124,9 +124,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       // Navigate to result screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => ResultScreen(score: score),
-        ),
+        MaterialPageRoute(builder: (context) => ResultScreen(score: score)),
       );
       return;
     }
@@ -206,9 +204,13 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       wasCorrect = answer == correctAnswer;
       if (wasCorrect) {
         score++;
+        correctAnswerCount++;
         _bounceController.forward(from: 0);
         _scoreController.forward(from: 0);
-        audioHelper.playSound('correct.mp3');
+        // Only play sound on the first correct answer
+        if (correctAnswerCount == 1) {
+          audioHelper.playSound('correct.mp3');
+        }
       } else {
         _shakeController.forward(from: 0);
         audioHelper.playSound('wrong.mp3');
