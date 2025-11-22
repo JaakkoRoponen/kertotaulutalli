@@ -1,4 +1,4 @@
-package com.example.kertotaulu_talli
+package com.example.kertotaulutalli
 
 import io.flutter.embedding.android.FlutterActivity
 

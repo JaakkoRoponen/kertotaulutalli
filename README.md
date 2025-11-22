@@ -1,4 +1,4 @@
-# kertotaulu_talli
+# kertotaulutalli
 
 A new Flutter project.
 
