@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../utils/constants.dart';
 import '../widgets/animated_press_button.dart';
 import 'quiz_screen.dart';
@@ -112,38 +113,37 @@ class _TableSelectionScreenState extends State<TableSelectionScreen> {
                 ),
               ),
               const SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.center,
                 children: Difficulty.values.map((difficulty) {
                   final isSelected = selectedDifficulty == difficulty;
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: AnimatedPressButton(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedDifficulty = difficulty;
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: isSelected
-                              ? Colors.brown
-                              : Colors.brown.shade300,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 12,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                  return AnimatedPressButton(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedDifficulty = difficulty;
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: isSelected
+                            ? Colors.brown
+                            : Colors.brown.shade300,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
                         ),
-                        child: Text(
-                          '🐎 ${GameConstants.getDifficultyName(difficulty)}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text(
+                        '🐎 ${GameConstants.getDifficultyName(difficulty)}',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
