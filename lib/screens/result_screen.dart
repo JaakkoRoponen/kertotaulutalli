@@ -6,8 +6,13 @@ import '../widgets/sparkles.dart';
 
 class ResultScreen extends StatefulWidget {
   final int score;
+  final bool soundEnabled;
 
-  const ResultScreen({super.key, required this.score});
+  const ResultScreen({
+    super.key,
+    required this.score,
+    required this.soundEnabled,
+  });
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -19,8 +24,8 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   void initState() {
     super.initState();
-    // Play perfect sound if score is perfect
-    if (widget.score == GameConstants.totalRounds) {
+    // Play perfect sound if score is perfect and sound is enabled
+    if (widget.soundEnabled && widget.score == GameConstants.totalRounds) {
       audioHelper.playSound('perfect.mp3');
     }
   }

@@ -13,6 +13,7 @@ class TableSelectionScreen extends StatefulWidget {
 class _TableSelectionScreenState extends State<TableSelectionScreen> {
   Difficulty selectedDifficulty = Difficulty.medium;
   int? selectedTable = 7;
+  bool soundEnabled = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,28 @@ class _TableSelectionScreenState extends State<TableSelectionScreen> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
         title: const Text('🐴 Kertotaulutalli 🐴'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Row(
+              children: [
+                Icon(
+                  soundEnabled ? Icons.volume_up : Icons.volume_off,
+                  size: 24,
+                ),
+                Switch(
+                  value: soundEnabled,
+                  onChanged: (value) {
+                    setState(() {
+                      soundEnabled = value;
+                    });
+                  },
+                  activeColor: Colors.amber,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -139,6 +162,7 @@ class _TableSelectionScreenState extends State<TableSelectionScreen> {
                               builder: (context) => QuizScreen(
                                 table: selectedTable!,
                                 difficulty: selectedDifficulty,
+                                soundEnabled: soundEnabled,
                               ),
                             ),
                           );
@@ -168,4 +192,3 @@ class _TableSelectionScreenState extends State<TableSelectionScreen> {
     );
   }
 }
-

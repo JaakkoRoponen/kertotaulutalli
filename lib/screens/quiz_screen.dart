@@ -10,8 +10,14 @@ import 'result_screen.dart';
 class QuizScreen extends StatefulWidget {
   final int table;
   final Difficulty difficulty;
+  final bool soundEnabled;
 
-  const QuizScreen({super.key, required this.table, required this.difficulty});
+  const QuizScreen({
+    super.key,
+    required this.table,
+    required this.difficulty,
+    required this.soundEnabled,
+  });
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -99,8 +105,10 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
     multiplierOrder = List.generate(10, (index) => index + 1);
     multiplierOrder.shuffle();
 
-    // Play start sound
-    audioHelper.playSound('start.mp3');
+    // Play start sound if enabled
+    if (widget.soundEnabled) {
+      audioHelper.playSound('start.mp3');
+    }
 
     generateQuestion();
   }
@@ -124,7 +132,12 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       // Navigate to result screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ResultScreen(score: score)),
+        MaterialPageRoute(
+          builder: (context) => ResultScreen(
+            score: score,
+            soundEnabled: widget.soundEnabled,
+          ),
+        ),
       );
       return;
     }
@@ -208,12 +221,14 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
         _bounceController.forward(from: 0);
         _scoreController.forward(from: 0);
         // Only play sound on the first correct answer
-        if (correctAnswerCount == 1) {
+        if (widget.soundEnabled && correctAnswerCount == 1) {
           audioHelper.playSound('correct.mp3');
         }
       } else {
         _shakeController.forward(from: 0);
-        audioHelper.playSound('wrong.mp3');
+        if (widget.soundEnabled) {
+          audioHelper.playSound('wrong.mp3');
+        }
       }
     });
 
