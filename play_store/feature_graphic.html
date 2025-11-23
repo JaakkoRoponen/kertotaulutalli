@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kertotaulutalli Feature Graphic</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .banner {
+            width: 512px;
+            height: 250px;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #D2691E 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        /* Decorative background pattern */
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        .horse-emoji {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        .subtitle {
+            font-size: 16px;
+            margin: 5px 0 0 0;
+            opacity: 0.95;
+        }
+        .math-symbols {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255,255,255,0.2);
+            font-weight: bold;
+        }
+        .math1 { top: 25px; left: 50px; }
+        .math2 { top: 50px; right: 60px; }
+        .math3 { bottom: 40px; left: 75px; }
+        .math4 { bottom: 50px; right: 50px; }
+        .math5 { top: 100px; left: 25px; }
+        .math6 { top: 75px; right: 40px; }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <!-- Decorative math symbols -->
+        <div class="math-symbols math1">2×3=6</div>
+        <div class="math-symbols math2">7×4=28</div>
+        <div class="math-symbols math3">5×5=25</div>
+        <div class="math-symbols math4">3×8=24</div>
+        <div class="math-symbols math5">6×2=12</div>
+        <div class="math-symbols math6">4×9=36</div>
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="horse-emoji">🐴</div>
+            <h1 class="title">Kertotaulutalli</h1>
+            <p class="subtitle">Harjoittele kertolaskuja hevostallilla</p>
+        </div>
+    </div>
+
+    <script>
+        // Log the exact dimensions for verification
+        console.log('Banner dimensions:',
+            document.querySelector('.banner').offsetWidth, 'x',
+            document.querySelector('.banner').offsetHeight);
+    </script>
+</body>
+</html>
