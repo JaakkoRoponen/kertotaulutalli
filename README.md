@@ -129,7 +129,7 @@ Screenshots are available in the `play_store/screenshots/` directory.
 
 This app does NOT collect any personal data. All game progress is stored locally on the device.
 
-For full privacy policy, see: [Privacy Policy](https://jaakkoroponen.github.io/kertotaulutalli/)
+For full privacy policy, see: [Privacy Policy](https://jaakkoroponen.github.io/kertotaulutalli/privacy-policy/)
 
 ## 📱 Download
 
