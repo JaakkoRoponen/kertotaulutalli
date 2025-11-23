@@ -146,7 +146,7 @@ For full privacy policy, see: [Privacy Policy](https://jaakkoroponen.github.io/k
 
 ## 📄 License
 
-This project is open source and available for educational purposes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
