@@ -134,7 +134,7 @@ For full privacy policy, see: [Privacy Policy](https://jaakkoroponen.github.io/k
 ## 📱 Download
 
 - **Google Play Store**: Coming soon!
-- **Web**: Coming soon!
+- **Web**: [Play Now!](https://jaakkoroponen.github.io/kertotaulutalli/) 🐴
 
 ## 👨‍💻 Developer
 

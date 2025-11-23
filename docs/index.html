@@ -1,58 +1,39 @@
 <!DOCTYPE html>
-<html lang="fi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
+    <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+    <base href="/" />
+
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta name="description" content="A new Flutter project." />
+
+    <!-- iOS meta tags & icons -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="kertotaulutalli" />
+    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+
     <title>Kertotaulutalli</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(to bottom, #d4a574, #f5e6d3);
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 60px;
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #8B4513;
-            font-size: 48px;
-            margin: 0 0 20px 0;
-        }
-        .emoji {
-            font-size: 100px;
-            margin-bottom: 20px;
-        }
-        p {
-            color: #666;
-            font-size: 18px;
-            margin: 20px 0;
-        }
-        a {
-            color: #8B4513;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="emoji">🐴</div>
-        <h1>Kertotaulutalli</h1>
-        <p>Web-versio tulossa pian!</p>
-        <p>Web version coming soon!</p>
-        <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
-        <p><a href="privacy-policy/">Privacy Policy</a></p>
-    </div>
-</body>
+    <link rel="manifest" href="manifest.json" />
+  </head>
+  <body>
+    <script src="flutter_bootstrap.js" async></script>
+  </body>
 </html>
