@@ -77,17 +77,20 @@ assets/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/JaakkoRoponen/kertotaulutalli.git
 cd kertotaulutalli
 ```
 
 2. Install dependencies:
+
 ```bash
 flutter pub get
 ```
 
 3. Run the app:
+
 ```bash
 # Web
 flutter run -d chrome
@@ -118,7 +121,7 @@ flutter build ios --release
 ### Web
 
 ```bash
-flutter build web --release
+flutter build web --release --base-href /kertotaulutalli/
 ```
 
 ## 🎨 Screenshots
@@ -131,7 +134,7 @@ This app does NOT collect any personal data. All game progress is stored locally
 
 For full privacy policy, see: [Privacy Policy](https://jaakkoroponen.github.io/kertotaulutalli/privacy-policy/)
 
-## 📱 Download
+## 📱 Play
 
 - **Google Play Store**: Coming soon!
 - **Web**: [Play Now!](https://jaakkoroponen.github.io/kertotaulutalli/) 🐴
@@ -139,7 +142,6 @@ For full privacy policy, see: [Privacy Policy](https://jaakkoroponen.github.io/k
 ## 👨‍💻 Developer
 
 **Jaakko Roponen**
-- Email: roponenjaakko@gmail.com
 - GitHub: [@JaakkoRoponen](https://github.com/JaakkoRoponen)
 
 ## 📄 License
