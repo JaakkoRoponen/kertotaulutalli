@@ -372,39 +372,48 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                               disabledBackgroundColor: disabledColor,
                               disabledForegroundColor: Colors.white,
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 60,
+                                horizontal: 10,
                                 vertical: 24,
                               ),
-                              fixedSize: const Size(200, 72),
+                              minimumSize: const Size(0, 72),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                                 side: border,
                               ),
                             ),
-                            child: Stack(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // Always centered number
-                                Center(
-                                  child: Text(
-                                    '$option',
-                                    style: const TextStyle(
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                // Symbol on the left with fixed space
+                                SizedBox(
+                                  width: 45,
+                                  child: symbolIcon != null
+                                      ? Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Icon(
+                                            symbolIcon,
+                                            size: 28,
+                                            color: Colors.white,
+                                          ),
+                                        )
+                                      : null,
                                 ),
-                                // Symbol positioned to the left of center
-                                if (symbolIcon != null)
-                                  Center(
-                                    child: Transform.translate(
-                                      offset: const Offset(-40, 0),
-                                      child: Icon(
-                                        symbolIcon,
-                                        size: 32,
-                                        color: Colors.white,
+                                const SizedBox(width: 1),
+                                // Number in fixed width container
+                                SizedBox(
+                                  width: 70,
+                                  child: Center(
+                                    child: Text(
+                                      '$option',
+                                      style: const TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
+                                ),
+                                // Empty space on right for balance
+                                const SizedBox(width: 52),
                               ],
                             ),
                           );
@@ -450,7 +459,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
 
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 12.0),
-                            child: buttonWidget,
+                            child: SizedBox(width: 200, child: buttonWidget),
                           );
                         }),
                       ],
