@@ -53,6 +53,7 @@ class _ResultScreenState extends State<ResultScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
+        centerTitle: true,
         title: const Text('🐴 Peli päättyi! 🐴'),
       ),
       body: LayoutBuilder(

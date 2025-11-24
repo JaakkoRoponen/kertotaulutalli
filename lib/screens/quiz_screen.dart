@@ -249,6 +249,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
+        centerTitle: true,
         title: Text(
           '🐴 Kertotaulu ${widget.table} - ${GameConstants.getDifficultyName(widget.difficulty)} 🐴',
         ),
