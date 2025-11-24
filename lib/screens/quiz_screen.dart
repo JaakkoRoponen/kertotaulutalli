@@ -133,10 +133,8 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => ResultScreen(
-            score: score,
-            soundEnabled: widget.soundEnabled,
-          ),
+          builder: (context) =>
+              ResultScreen(score: score, soundEnabled: widget.soundEnabled),
         ),
       );
       return;
@@ -311,148 +309,151 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
 
             Expanded(
               child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Question
-                      Text(
-                        '$currentMultiplier × ${widget.table} = ?',
-                        style: const TextStyle(
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.brown,
-                        ),
-                      ),
-
-                      const SizedBox(height: 60),
-
-                      // Answer options
-                      ...options.map((option) {
-                        Color buttonColor = Colors.brown;
-                        Color disabledColor = Colors.grey;
-                        BorderSide border = const BorderSide(
-                          color: Colors.transparent,
-                          width: 4,
-                        );
-                        IconData? symbolIcon;
-
-                        if (showFeedback) {
-                          if (option == selectedAnswer) {
-                            // This is the button the user clicked
-                            if (wasCorrect) {
-                              buttonColor = Colors.green;
-                              disabledColor = Colors.green;
-                              symbolIcon = Icons.check;
-                            } else {
-                              buttonColor = Colors.red;
-                              disabledColor = Colors.red;
-                              symbolIcon = Icons.close;
-                            }
-                          } else if (option == correctAnswer && !wasCorrect) {
-                            // Show the correct answer with amber border if user was wrong
-                            border = const BorderSide(
-                              color: Colors.amber,
-                              width: 4,
-                            );
-                            symbolIcon = Icons.check;
-                          }
-                        }
-
-                        // Determine which animation to use
-                        Widget buttonWidget = ElevatedButton(
-                          onPressed: showFeedback
-                              ? null
-                              : () => handleAnswer(option),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: buttonColor,
-                            foregroundColor: Colors.white,
-                            disabledBackgroundColor: disabledColor,
-                            disabledForegroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 60,
-                              vertical: 24,
-                            ),
-                            fixedSize: const Size(200, 72),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                              side: border,
-                            ),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Question
+                        Text(
+                          '$currentMultiplier × ${widget.table} = ?',
+                          style: const TextStyle(
+                            fontSize: 48,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown,
                           ),
-                          child: Stack(
-                            children: [
-                              // Always centered number
-                              Center(
-                                child: Text(
-                                  '$option',
-                                  style: const TextStyle(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                        ),
+
+                        const SizedBox(height: 60),
+
+                        // Answer options
+                        ...options.map((option) {
+                          Color buttonColor = Colors.brown;
+                          Color disabledColor = Colors.grey;
+                          BorderSide border = const BorderSide(
+                            color: Colors.transparent,
+                            width: 4,
+                          );
+                          IconData? symbolIcon;
+
+                          if (showFeedback) {
+                            if (option == selectedAnswer) {
+                              // This is the button the user clicked
+                              if (wasCorrect) {
+                                buttonColor = Colors.green;
+                                disabledColor = Colors.green;
+                                symbolIcon = Icons.check;
+                              } else {
+                                buttonColor = Colors.red;
+                                disabledColor = Colors.red;
+                                symbolIcon = Icons.close;
+                              }
+                            } else if (option == correctAnswer && !wasCorrect) {
+                              // Show the correct answer with amber border if user was wrong
+                              border = const BorderSide(
+                                color: Colors.amber,
+                                width: 4,
+                              );
+                              symbolIcon = Icons.check;
+                            }
+                          }
+
+                          // Determine which animation to use
+                          Widget buttonWidget = ElevatedButton(
+                            onPressed: showFeedback
+                                ? null
+                                : () => handleAnswer(option),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: buttonColor,
+                              foregroundColor: Colors.white,
+                              disabledBackgroundColor: disabledColor,
+                              disabledForegroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 60,
+                                vertical: 24,
                               ),
-                              // Symbol positioned to the left of center
-                              if (symbolIcon != null)
+                              fixedSize: const Size(200, 72),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                                side: border,
+                              ),
+                            ),
+                            child: Stack(
+                              children: [
+                                // Always centered number
                                 Center(
-                                  child: Transform.translate(
-                                    offset: const Offset(-40, 0),
-                                    child: Icon(
-                                      symbolIcon,
-                                      size: 32,
-                                      color: Colors.white,
+                                  child: Text(
+                                    '$option',
+                                    style: const TextStyle(
+                                      fontSize: 32,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                            ],
-                          ),
-                        );
+                                // Symbol positioned to the left of center
+                                if (symbolIcon != null)
+                                  Center(
+                                    child: Transform.translate(
+                                      offset: const Offset(-40, 0),
+                                      child: Icon(
+                                        symbolIcon,
+                                        size: 32,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          );
 
-                        // Apply animations based on state
-                        if (showFeedback &&
-                            option == selectedAnswer &&
-                            wasCorrect) {
-                          // Bounce animation for correct answer
-                          buttonWidget = AnimatedBuilder(
-                            animation: _bounceAnimation,
-                            builder: (context, child) => Transform.scale(
-                              scale: _bounceAnimation.value,
-                              child: child,
-                            ),
-                            child: buttonWidget,
-                          );
-                        } else if (showFeedback &&
-                            option == selectedAnswer &&
-                            !wasCorrect) {
-                          // Shake animation for wrong answer
-                          buttonWidget = AnimatedBuilder(
-                            animation: _shakeAnimation,
-                            builder: (context, child) => Transform.translate(
-                              offset: Offset(_shakeAnimation.value, 0),
-                              child: child,
-                            ),
-                            child: buttonWidget,
-                          );
-                        } else if (showFeedback &&
-                            option == correctAnswer &&
-                            !wasCorrect) {
-                          // Pulse animation for correct answer (amber border)
-                          buttonWidget = AnimatedBuilder(
-                            animation: _pulseAnimation,
-                            builder: (context, child) => Transform.scale(
-                              scale: _pulseAnimation.value,
-                              child: child,
-                            ),
-                            child: buttonWidget,
-                          );
-                        }
+                          // Apply animations based on state
+                          if (showFeedback &&
+                              option == selectedAnswer &&
+                              wasCorrect) {
+                            // Bounce animation for correct answer
+                            buttonWidget = AnimatedBuilder(
+                              animation: _bounceAnimation,
+                              builder: (context, child) => Transform.scale(
+                                scale: _bounceAnimation.value,
+                                child: child,
+                              ),
+                              child: buttonWidget,
+                            );
+                          } else if (showFeedback &&
+                              option == selectedAnswer &&
+                              !wasCorrect) {
+                            // Shake animation for wrong answer
+                            buttonWidget = AnimatedBuilder(
+                              animation: _shakeAnimation,
+                              builder: (context, child) => Transform.translate(
+                                offset: Offset(_shakeAnimation.value, 0),
+                                child: child,
+                              ),
+                              child: buttonWidget,
+                            );
+                          } else if (showFeedback &&
+                              option == correctAnswer &&
+                              !wasCorrect) {
+                            // Pulse animation for correct answer (amber border)
+                            buttonWidget = AnimatedBuilder(
+                              animation: _pulseAnimation,
+                              builder: (context, child) => Transform.scale(
+                                scale: _pulseAnimation.value,
+                                child: child,
+                              ),
+                              child: buttonWidget,
+                            );
+                          }
 
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 12.0),
-                          child: buttonWidget,
-                        );
-                      }),
-                    ],
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 12.0),
+                            child: buttonWidget,
+                          );
+                        }),
+                      ],
+                    ),
                   ),
                 ),
               ),
