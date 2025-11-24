@@ -196,7 +196,9 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       wasCorrect = false;
     });
 
-    audioHelper.playSound('wrong.mp3');
+    if (widget.soundEnabled) {
+      audioHelper.playSound('wrong.mp3');
+    }
 
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
