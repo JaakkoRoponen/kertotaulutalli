@@ -88,43 +88,68 @@ class _ResultScreenState extends State<ResultScreen> {
                           children: [
                             // Bounce animation for practice more message
                             if (widget.score < 7)
-                              TweenAnimationBuilder<double>(
-                                tween: Tween(begin: 0.0, end: 1.0),
-                                duration: const Duration(milliseconds: 1200),
-                                curve: Curves.elasticOut,
-                                builder: (context, value, child) {
-                                  return Transform.scale(
-                                    scale: 0.5 + (value * 0.5),
-                                    child: child,
-                                  );
-                                },
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20.0,
+                                ),
+                                child: TweenAnimationBuilder<double>(
+                                  tween: Tween(begin: 0.0, end: 1.0),
+                                  duration: const Duration(milliseconds: 1200),
+                                  curve: Curves.elasticOut,
+                                  builder: (context, value, child) {
+                                    return Transform.scale(
+                                      scale: 0.5 + (value * 0.5),
+                                      child: child,
+                                    );
+                                  },
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      getResultMessage(),
+                                      style: const TextStyle(
+                                        fontSize: 48,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.brown,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            else
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20.0,
+                                ),
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    getResultMessage(),
+                                    style: const TextStyle(
+                                      fontSize: 48,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.brown,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            const SizedBox(height: 40),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0,
+                              ),
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
                                 child: Text(
-                                  getResultMessage(),
+                                  'Sait ${widget.score} / ${GameConstants.totalRounds} pistettä!',
                                   style: const TextStyle(
-                                    fontSize: 48,
+                                    fontSize: 32,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.brown,
                                   ),
                                   textAlign: TextAlign.center,
                                 ),
-                              )
-                            else
-                              Text(
-                                getResultMessage(),
-                                style: const TextStyle(
-                                  fontSize: 48,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.brown,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            const SizedBox(height: 40),
-                            Text(
-                              'Sait ${widget.score} / ${GameConstants.totalRounds} pistettä!',
-                              style: const TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.brown,
                               ),
                             ),
                             const SizedBox(height: 60),

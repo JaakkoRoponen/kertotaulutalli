@@ -72,6 +72,7 @@ class _TableSelectionScreenState extends State<TableSelectionScreen> {
                           fontWeight: FontWeight.bold,
                           color: Colors.brown,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 25),
                       Wrap(
@@ -118,6 +119,7 @@ class _TableSelectionScreenState extends State<TableSelectionScreen> {
                           fontWeight: FontWeight.bold,
                           color: Colors.brown,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 15),
                       Wrap(
