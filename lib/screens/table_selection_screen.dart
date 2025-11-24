@@ -39,7 +39,7 @@ class _TableSelectionScreenState extends State<TableSelectionScreen> {
                       soundEnabled = value;
                     });
                   },
-                  activeColor: Colors.amber,
+                  activeThumbColor: Colors.amber,
                 ),
               ],
             ),
